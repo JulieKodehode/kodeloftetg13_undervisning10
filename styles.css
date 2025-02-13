@@ -38,10 +38,21 @@ main {
 .slideInLeftCard {
   background-color: var(--cardFromLeft);
   color: whitesmoke;
+
+  /* Setter opp en long-hand animasjon properties */
+  animation-name: slideInLeft; /* Navnet på animasjonen */
+  animation-duration: 5s; /* Hvor lenge skal animasjonen vare */
+  animation-timing-function: ease-in; /* Hvordan skal animasjonen bevege seg */
+  animation-iteration-count: 3; /* Hvor mange ganger skal animasjonen kjøres */
+  animation-fill-mode: forwards; /* Hvor animasjonen skal stå når den er ferdig */
 }
 
 .slideInRightCard {
   background-color: var(--cardFromRight);
+
+  /* Setter opp en short-hand animasjon properties */
+  /* Starter med name, duration, timing-function, iteration-count, fill-mode*/
+  animation: slideInRight 5s ease-in 3 forwards;
 }
 
 .rotateCard {
@@ -49,6 +60,15 @@ main {
   width: 100px;
   height: 100px;
   background-color: var(--rotate);
+
+  /* Setter opp en long-hand animasjon properties */
+  animation-name: rotate; 
+  animation-duration: 5s; 
+  animation-timing-function: ease-in; 
+  animation-iteration-count: 1; 
+
+  /* Setter opp en short-hand animasjon properties */
+  animation: rotate 5s ease-in-out 1;
 }
 
 .hoverBtnContainer {
@@ -64,7 +84,9 @@ main {
   border-color: lightgrey;
   border-style: solid;
   box-shadow: 2px 2px 5px lightgrey;
-  transition: 700ms;
+
+  /* Setter en transition som skal gå på alle element som har .btn som class-navn */
+  transition-duration: 700ms;
   transition-timing-function: ease-in-out;
 }
 
@@ -86,4 +108,51 @@ main {
 /* Setter en psuedo:hover som justerer størrelse */
 .btnSize:hover {
   scale: 1.2;
+}
+
+
+/* Keyframe som aktiverer at vi har en animasjon som skal ha ulike steg */
+@keyframes slideInLeft {
+  /* Startpunkt */
+  from {
+    transform: translateX(-1000px)
+  }
+  /* Sluttpunkt */
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Keyframe som aktiverer at vi har en animasjon som skal ha ulike steg */
+@keyframes slideInRight {
+  /* Startpunkt */
+  from {
+    transform: translateX(1000px)
+  }
+  /* Sluttpunkt */
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Keyframe som aktiverer at vi har en animasjon som skal ha ulike steg */
+@keyframes rotate {
+  /* Startpunkt */
+  0% {
+    scale: 0;
+    transform: rotate(0);
+    border-radius: 0;
+  }
+  /* Midtpunkt */
+  50% {
+    scale: 1.5;
+    transform: rotate(0);
+    border-radius: 0;
+  }
+  /* Sluttpunkt */
+  100% {
+    scale: 2;
+    transform: rotate(360deg);
+    border-radius: 100%;
+  }
 }
